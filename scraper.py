@@ -40,6 +40,10 @@ def scrape_bballref_players(year=2020, stat="totals", pause=2):
         div_id = "div_totals_stats"
         start_page = "https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_totals.html"
         header_row = 0
+    elif stat == "advanced":
+        div_id = "div_advanced_stats"
+        start_page = "https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_advanced.html"
+        header_row = 0
 
     logger.info(f"Getting {stat} stats for {year}...")
     page = requests.get(start_page)
@@ -117,33 +121,7 @@ def scrape_dataset(stat, start_yr=1997, end_yr=2021, outfile=None):
     return out_dfs
 
 
-player_per_game_df = scrape_dataset("per_game", 1981, 2021, "data/player_per_game.csv")
-player_shooting_df = scrape_dataset("shooting", 1997, 2021, "data/player_shooting.csv")
-player_totals_df = scrape_dataset("totals", 1981, 2021, "data/player_totals.csv")
-
-#
-# out_dfs = list()
-# for yr in range(1981, 2021):
-#     tmp_df = scrape_bballref_players(year=yr, stat="per_game")
-#     tmp_df = tmp_df.assign(season=yr)
-#     out_dfs.append(tmp_df)
-# player_per_game_df = pd.concat(out_dfs, axis=0)
-# player_per_game_df.to_csv("data/player_per_game.csv")
-#
-# # shooting stats only available from 1997 (96-97)
-# out_dfs = list()
-# for yr in range(1997, 2021):
-#     tmp_df = scrape_bballref_players(year=yr, stat="shooting")
-#     tmp_df = tmp_df.assign(season=yr)
-#     out_dfs.append(tmp_df)
-# player_shooting_df = pd.concat(out_dfs, axis=0)
-# player_shooting_df.to_csv("data/player_shooting.csv")
-#
-# # shooting stats only available from 1997 (96-97)
-# out_dfs = list()
-# for yr in range(1981, 2021):
-#     tmp_df = scrape_bballref_players(year=yr, stat="totals")
-#     tmp_df = tmp_df.assign(season=yr)
-#     out_dfs.append(tmp_df)
-# player_totals_df = pd.concat(out_dfs, axis=0)
-# player_totals_df.to_csv("data/player_totals.csv")
+# player_per_game_df = scrape_dataset("per_game", 1981, 2021, "data/player_per_game.csv")
+# player_shooting_df = scrape_dataset("shooting", 1997, 2021, "data/player_shooting.csv")
+# player_totals_df = scrape_dataset("totals", 1981, 2021, "data/player_totals.csv")
+player_advanced_df = scrape_dataset("advanced", 1981, 2021, "data/player_advanced.csv")
