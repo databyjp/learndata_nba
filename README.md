@@ -1,6 +1,7 @@
-# Data Science with the NBA
+# Learn data science with sports data
 
-Predict player progression over time - 
+## Data exploration
+Build a streamlit app to dynamically explore data
 
-- Get data
-- Clean data (aggregate cases when players are traded)
+
+
